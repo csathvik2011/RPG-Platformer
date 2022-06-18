@@ -2,6 +2,10 @@
 
 bool running = true;
 
+void* buffer_memory;
+int buffer_width;
+int buffer_height;
+
 LRESULT CALLBACK WindowProc window_callback(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
       LRESULT result = 0;
       
@@ -10,6 +14,18 @@ LRESULT CALLBACK WindowProc window_callback(HWND hwnd, UINT uMsg, WPARAM wParam,
       case WM_DESTROY: {
             running = false;
             } break;  
+                  
+            case WM_SIZE: {
+                  RECT rect;
+                  GetClientRect(hwnd, &rect);
+                  buffer_width = rect.right - rect.left;
+                  buffer_height = rect.bottom - rect.top
+                        
+                  int buffer_size = buffer_width * buffer_height * sizeof(unsigned int);
+                  
+                  if (buffer_memory) VirtualFree(buffer_memory, 0, MEM_RELEASE);
+                  buffer_memory = VirtualAlloc(0, buffer_size, MEM COMMIT | MEM_RESERVE, PAGE_READWRITE);
+            } break;
                   
             default: {
                result = DefWindowProc(hwnd, uMsg, wParam, lParam)   
