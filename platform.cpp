@@ -65,12 +65,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   DispatchMessage(&message)
             }
            // Simulate
-           unsigned int* pixel = (unsigned int)buffer_memory;
-           for (int y = 0; y < buffer_height; y++) {
-                 for (int x = 0; x < buffer_width; y++) {
-                       *pixel++ = 0xff00ff;
-                 }
-           }
+          
           // Render
           StretchDIBits(hdc, 0, 0, buffer_width, buffer_height, 0, 0, buffer_width, buffer_height, buffer_memory, &buffer_bitmap_info, DIB_RGB_COLORS, SRCCOPY);
       }
