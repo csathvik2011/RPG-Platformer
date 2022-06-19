@@ -22,12 +22,12 @@ LRESULT CALLBACK WindowProc window_callback(HWND hwnd, UINT uMsg, WPARAM wParam,
             case WM_SIZE: {
                   RECT rect;
                   GetClientRect(hwnd, &rect);
-                  buffer_width = rect.right - rect.left;
-                  buffer_height = rect.bottom - rect.top
+                  render_state_buffer_width = rect.right - rect.left;
+                  render_state_buffer_height = rect.bottom - rect.top
                         
                   int buffer_size = buffer_width * buffer_height * sizeof(unsigned int);
                   
-                  if (buffer_memory) VirtualFree(buffer_memory, 0, MEM_RELEASE);
+                  if (render_state_buffer_memory) VirtualFree(buffer_memory, 0, MEM_RELEASE);
                   buffer_memory = VirtualAlloc(0, buffer_size, MEM COMMIT | MEM_RESERVE, PAGE_READWRITE);
                  
                   buffer_bitmap_info.bmiHeader.biSize = sizeof(buffer_bitmap_info.bmiHeader)
