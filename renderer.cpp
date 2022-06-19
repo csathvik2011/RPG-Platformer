@@ -1,0 +1,3 @@
+void render_background() {
+  
+}
