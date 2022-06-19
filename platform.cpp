@@ -10,6 +10,8 @@ struct Render_State {
 
 Render_State render_state;
 
+#include "renderer.cpp"
+
 LRESULT CALLBACK WindowProc window_callback(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
       LRESULT result = 0;
       
@@ -65,7 +67,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
                   DispatchMessage(&message)
             }
            // Simulate
-          render_background();
+          clear_screen(0xff5500);
+          draw_rect(50, 50, 200, 500, 0xff0000)     
           // Render
           StretchDIBits(hdc, 0, 0, buffer_width, buffer_height, 0, 0, buffer_width, buffer_height, buffer_memory, &buffer_bitmap_info, DIB_RGB_COLORS, SRCCOPY);
       }
